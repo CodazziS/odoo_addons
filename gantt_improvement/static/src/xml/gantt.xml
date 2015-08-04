@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<templates>
+    <t t-name="GanttView">
+        <div>
+            <div class="gantt_i_buttons">
+
+                <select class="gantt_i_input gantt_improvement_scale">
+                    <option value="1">Day</option>
+                    <option value="2">Week</option>
+                    <option value="3">Month</option>
+                    <option value="4">Year</option>
+                </select>
+                <input class="gantt_i_input" placeholder="Start date (yyyy-mm-dd)" id="gantt_improvement_date_start" type="date" />
+                <input class="gantt_i_input" placeholder="End date (yyyy-mm-dd)" id="gantt_improvement_date_stop" type="date" />
+
+                <button id="gantt_i_search_btn" type="button" class="btn btn-default" aria-label="Search">
+                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div t-att-id="widget.gantt_improvement_id" class="oe_gantt_improvement"/>
+        </div>
+    </t>
+
+    <t t-name="GanttView.buttons">
+        <button id="gantt_i_create_button" class="oe_button gantt_i_create_button oe_highlight">Create</button> 
+    </t>
+</templates>
+
