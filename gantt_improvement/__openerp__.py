@@ -29,7 +29,4 @@ TeMPO - Gantt Improvement
         'static/dhtmlxGantt/dhtmlxgantt.css',
     ],
     'qweb': ['static/src/xml/gantt.xml'],
-    'data': [
-        'views/web_gantt.xml',  # Odoo V8.0, comment this for Odoo V7
-    ],
 }

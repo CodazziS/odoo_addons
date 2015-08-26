@@ -1,5 +1,5 @@
 #TeMPO - Gantt Improvement
-Gantt Improvement in [Odoo app store] (https://www.odoo.com/apps/modules/8.0/gantt_improvement/) 
+Gantt Improvement in [Odoo app store] (https://www.odoo.com/apps/modules/7.0/gantt_improvement/) 
 
 Features :
 
@@ -11,7 +11,7 @@ Features :
 
 
 ##Install
-The plugin was configured for Odoo v8.0.
+The plugin was configured for Odoo v7.0.
 
 ##Translation
 * - EN
@@ -20,4 +20,4 @@ The plugin was configured for Odoo v8.0.
 
 ##Screenshot :
 
-![Screen1](content/screen1.png)
+![Screen1](/content/screen1.png)
