@@ -28,6 +28,7 @@ openerp.gantt_improvement = function (instance) {
         def_gantt_scale: 1,                         // Gantt scale (Day, week, month, year)
 
         def_lastTaskEvent: null,                    // Use for task drag/resize
+        event_list: [],                             // For remove all event on reload
 
         /* Odoo vars */
         display_name: _lt('Gantt'),
@@ -53,8 +54,6 @@ openerp.gantt_improvement = function (instance) {
 
             this.last_r = r;
             this.attrs = r.arch.attrs;
-
-            
         },
 
         reload: function() {
@@ -206,13 +205,15 @@ openerp.gantt_improvement = function (instance) {
                 };
                 
                 /* Display task details on click */
-                gantt.attachEvent("onTaskDblClick", function(id,e) {
-                    if (id !== undefined && id.indexOf('p') === -1) {
+                for (var ev in this.event_list) {
+                    gantt.detachEvent(this.event_list[ev]); 
+                }
+                this.event_list.push(gantt.attachEvent("onTaskDblClick", function(id, e) {
+                    if (id !== undefined && id !== null && id.indexOf('p') === -1) {
                         self.on_task_display(id);
                     }
-                });
-
-                gantt.attachEvent("onTaskDrag", function(id, mode, task, original) {
+                }));
+                this.event_list.push(gantt.attachEvent("onTaskDrag", function(id, mode, task, original) {
                     var lastTaskEvent = {};
 
                     lastTaskEvent.date_start = task.start_date;
@@ -220,9 +221,9 @@ openerp.gantt_improvement = function (instance) {
                     lastTaskEvent.odoo_id = task.id;
                     lastTaskEvent.duration = task.duration;
                     self.def_lastTaskEvent = lastTaskEvent;
-                });
+                }));
 
-                gantt.attachEvent("onAfterTaskDrag", function(id, mode, task, original) {
+                this.event_list.push(gantt.attachEvent("onAfterTaskDrag", function(id, mode, task, original) {
                     var date_start,
                         date_end;
 
@@ -239,7 +240,7 @@ openerp.gantt_improvement = function (instance) {
                         self.saveLastTask(self.def_lastTaskEvent);
                         self.def_lastTaskEvent = null;
                     }
-                });
+                }));
 
                 /* Add create button */
                 this.$buttons = $(QWeb.render("GanttView.buttons", {'widget':self}));
@@ -281,7 +282,7 @@ openerp.gantt_improvement = function (instance) {
                 if (this.attrs.default_group_by !== undefined) {
                     group_bys[0] = this.attrs.default_group_by;
                 }
-            } 
+            }
             for (i in this.def_items) {
                 if (this.def_items[i][this.attrs.date_start] !== false &&
                     ((this.attrs.date_stop !== undefined &&
@@ -332,9 +333,20 @@ openerp.gantt_improvement = function (instance) {
                         data.progress = item[this.attrs.progress] / 100.00;
                     }
                     if (this.attrs.date_stop !== undefined) {
-                        var end = instance.web.auto_str_to_date(item[this.attrs.date_stop]);
-                        data.end_date = end;
-                    } else if (this.attrs.date_delay !== undefined){
+                        var date_stop = instance.web.auto_str_to_date(item[this.attrs.date_stop]);
+                        data.end_date = date_stop;
+                    } else if (item[this.attrs.date_start + "_end"] !== undefined) {
+                        /*
+                            Fix for MRP module:
+                            no date_stop in attrs, but date_planned_end found on itmes
+                        */
+                        var date_start_end = instance.web.auto_str_to_date(item[this.attrs.date_start + "_end"]);
+                        data.end_date = date_start_end;
+                    } else if (this.attrs.date_delay !== undefined) {
+                        var unitvalues = ["minute", "hour", "day", "week", "month", "year"];
+                        if (unitvalues.indexOf(this.attrs.date_delay) > -1) {
+                            gantt.config.duration_unit = this.attrs.date_delay;
+                        }
                         data.duration = (item[this.attrs.date_delay] > 0) ? item[this.attrs.date_delay] : 0.1;
                     } else {
                         console.error('Error gantt_improvement E1');
@@ -451,6 +463,33 @@ openerp.gantt_improvement = function (instance) {
                 self.reload();
             });
             pop.select_element(self.dataset.model, {initial_view: "form"});
+        },
+
+        do_hide: function () {
+            if (this.sidebar) {
+                this.sidebar.$el.hide();
+            }
+            if (this.$buttons) {
+                this.$buttons.hide();
+            }
+            if (this.$pager) {
+                this.$pager.hide();
+            }
+            this._super();
+        },
+
+        do_show: function (options) {
+
+            if (this.sidebar) {
+                this.sidebar.$el.show();
+            }
+            if (this.$buttons) {
+                this.$buttons.show();
+            }
+            if (this.$pager) {
+                this.$pager.show();
+            }
+            this._super();
         },
 
         saveLastTask: function(lastTaskEvent) {

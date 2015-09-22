@@ -9,6 +9,10 @@ Features :
 * - Link between tasks in gantt (project to tasks).
 * - Link between next tasks in gantt (exemple: Long term project in V7)
 
+##Support
+Support on Github: https://github.com/stephane-/odoo_addons/issues
+
+Fixed issues: https://github.com/stephane-/odoo_addons/milestones/V1.2
 
 ##Install
 The plugin was configured for Odoo v8.0.
@@ -20,4 +24,4 @@ The plugin was configured for Odoo v8.0.
 
 ##Screenshot :
 
-![Screen1](content/screen1.png)
+![Screen1](/content/screen1.png)
