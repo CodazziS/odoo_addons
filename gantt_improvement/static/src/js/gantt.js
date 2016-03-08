@@ -265,6 +265,9 @@ openerp.gantt_improvement = function (instance) {
             if (this.attrs.string !== undefined) {
                 label = this.attrs.string;
             }
+            if (this.attrs.scale !== undefined) {
+                self.set_scale(this.attrs.scale);
+            }
             gantt.config.columns = [
                 {name: "text", label: label, width:"*", tree:true}
             ];
