@@ -369,10 +369,10 @@ openerp.gantt_improvement = function (instance) {
         draw_gantt: function (datas, links) {
             var today = new Date();
 
-            gantt.init(this.gantt_improvement_id, this.def_gantt_date_start, this.def_gantt_date_stop);
+            gantt.init(this.gantt_improvement_id, this.def_gantt_date_start, this.def_gantt_date_end);
             gantt.parse({'data': datas, 'links': links});
             gantt.config.start_date = this.def_gantt_date_start;
-            gantt.config.end_date = this.def_gantt_date_stop;
+            gantt.config.end_date = this.def_gantt_date_end;
             gantt.addMarker({
                 start_date: today,
                 css: "today",
@@ -395,9 +395,9 @@ openerp.gantt_improvement = function (instance) {
             date_stop = document.getElementById('gantt_improvement_date_stop').value;
             if (date_start !== '' && date_start !== null && date_stop !== '' && date_stop !== null) {
                 this.def_gantt_date_start = new Date(date_start);
-                this.def_gantt_date_stop = new Date(date_stop);
+                this.def_gantt_date_end = new Date(date_stop);
                 gantt.config.start_date = this.def_gantt_date_start;
-                gantt.config.end_date = this.def_gantt_date_stop;
+                gantt.config.end_date = this.def_gantt_date_end;
             }
             this.reload();
         },
