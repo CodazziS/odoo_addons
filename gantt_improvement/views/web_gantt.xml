@@ -10,6 +10,8 @@
                 <script type="text/javascript" src="/gantt_improvement/static/src/js/gantt.js"></script>
                 <script type="text/javascript" src="/gantt_improvement/static/dhtmlxGantt/sources/dhtmlxgantt.js"></script>
                 <script type="text/javascript" src="/gantt_improvement/static/dhtmlxGantt/ext/dhtmlxgantt_marker.js"></script>
+                <script type="text/javascript" t-att-src="'/gantt_improvement/static/dhtmlxGantt/locale/locale_%s.js'
+                % (request.session.context.get('lang')[:2])" charset="utf-8"></script>
             </xpath>
         </template>
     </data>
