@@ -1,4 +1,4 @@
-[![Odoo version](https://img.shields.io/badge/Odoo-8.0-brightgreen.svg?style=flat-square)]()
+[![Odoo version](https://img.shields.io/badge/Odoo-7.0-brightgreen.svg?style=flat-square)]()
 [![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/codazzi)
 
 #TeMPO - Gantt Improvement
