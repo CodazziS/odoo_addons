@@ -1,5 +1,8 @@
+[![Odoo version](https://img.shields.io/badge/Odoo-8.0-brightgreen.svg?style=flat-square)]()
+[![Donate](https://img.shields.io/badge/donate-paypal-blue.svg?style=flat-square)](https://paypal.me/codazzi)
+
 #TeMPO - Gantt Improvement
-Gantt Improvement in [Odoo app store] (https://www.odoo.com/apps/modules/7.0/gantt_improvement/) 
+Gantt Improvement in [Odoo app store] (https://www.odoo.com/apps/modules/8.0/gantt_improvement/)
 
 Features :
 
@@ -9,6 +12,10 @@ Features :
 * - Link between tasks in gantt (project to tasks).
 * - Link between next tasks in gantt (exemple: Long term project in V7)
 
+##Support
+Support on Github: https://github.com/stephane-/odoo_addons/issues
+
+Fixed issues: https://github.com/stephane-/odoo_addons/issues?utf8=%E2%9C%93&q=label%3AFixed+
 
 ##Install
 The plugin was configured for Odoo v7.0.
@@ -20,4 +27,4 @@ The plugin was configured for Odoo v7.0.
 
 ##Screenshot :
 
-![Screen1](/content/screen1.png)
+![Screen1](content/screen1.png)

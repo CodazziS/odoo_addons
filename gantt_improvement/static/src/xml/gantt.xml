@@ -15,7 +15,7 @@
                 <input class="gantt_i_input" placeholder="End date (yyyy-mm-dd)" id="gantt_improvement_date_stop" type="date" />
 
                 <button id="gantt_i_search_btn" type="button" class="btn btn-default" aria-label="Search">
-                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    Search
                 </button>
             </div>
             <div t-att-id="widget.gantt_improvement_id" class="oe_gantt_improvement"/>
@@ -23,7 +23,6 @@
     </t>
 
     <t t-name="GanttView.buttons">
-        <button id="gantt_i_create_button" class="oe_button gantt_i_create_button oe_highlight">Create</button> 
+        <button id="gantt_i_create_button" class="oe_button gantt_i_create_button oe_highlight">Create</button>
     </t>
 </templates>
-
