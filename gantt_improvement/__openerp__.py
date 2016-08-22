@@ -32,5 +32,6 @@ TeMPO - Gantt Improvement
     'qweb': ['static/src/xml/gantt.xml'],
     'data': [
         'views/web_gantt.xml',  # Odoo V8.0, comment this for Odoo V7
+        'static/src/xml/gantt_config.xml',  # Odoo V8.0, comment this for Odoo V7
     ],
 }
