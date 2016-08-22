@@ -367,7 +367,10 @@ openerp.gantt_improvement = function (instance) {
 
         draw_gantt: function (datas, links) {
             var today = new Date();
+            document.getElementById('gantt_improvement_date_start').value = this.def_gantt_date_start.toISOString().slice(0,10);
+            document.getElementById('gantt_improvement_date_stop').value = this.def_gantt_date_end.toISOString().slice(0,10);
 
+            gantt.config.autosize = "y";
             gantt.init(this.gantt_improvement_id, this.def_gantt_date_start, this.def_gantt_date_end);
             gantt.clearAll();
             gantt.parse({'data': datas, 'links': links});
