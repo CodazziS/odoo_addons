@@ -4,7 +4,6 @@
     <t t-name="GanttView">
         <div>
             <div class="gantt_i_buttons">
-
                 <select class="gantt_i_input gantt_improvement_scale">
                     <option value="1">Day</option>
                     <option value="2">Week</option>
@@ -26,4 +25,3 @@
         <button id="gantt_i_create_button" class="oe_button gantt_i_create_button oe_highlight">Create</button>
     </t>
 </templates>
-

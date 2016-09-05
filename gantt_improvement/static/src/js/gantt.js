@@ -367,7 +367,10 @@ openerp.gantt_improvement = function (instance) {
 
         draw_gantt: function (datas, links) {
             var today = new Date();
+            document.getElementById('gantt_improvement_date_start').value = this.def_gantt_date_start.toISOString().slice(0,10);
+            document.getElementById('gantt_improvement_date_stop').value = this.def_gantt_date_end.toISOString().slice(0,10);
 
+            gantt.config.autosize = "y";
             gantt.init(this.gantt_improvement_id, this.def_gantt_date_start, this.def_gantt_date_end);
             gantt.clearAll();
             gantt.parse({'data': datas, 'links': links});
@@ -407,9 +410,14 @@ openerp.gantt_improvement = function (instance) {
                 case "1":
                     gantt.config.scale_unit = "day";
                     gantt.config.step = 1;
-                    gantt.config.date_scale = "%d %M";
-                    gantt.config.subscales = [];
-                    gantt.config.scale_height = 27;
+                    // gantt.config.date_scale = "%d %M";
+                    // gantt.config.subscales = [];
+                    // gantt.config.scale_height = 27;
+                    gantt.config.date_scale = "%d %M, %D";
+                    gantt.config.subscales = [
+                        {unit:"hour", step:1, date:"%H:00" }
+                    ];
+                    gantt.config.scale_height = 50;
                     gantt.templates.date_scale = null;
                     break;
                 case "2":
@@ -431,7 +439,8 @@ openerp.gantt_improvement = function (instance) {
                     gantt.config.scale_unit = "month";
                     gantt.config.date_scale = "%F, %Y";
                     gantt.config.subscales = [
-                        {unit:"day", step:1, date:"%j, %D" }
+                        //{unit:"day", step:1, date:"%j, %D" }
+                        {unit:"week", step:1, date: _lt("Week") + " #%W" }
                     ];
                     gantt.config.scale_height = 50;
                     gantt.templates.date_scale = null;
@@ -440,11 +449,13 @@ openerp.gantt_improvement = function (instance) {
                     gantt.config.scale_unit = "year";
                     gantt.config.step = 1;
                     gantt.config.date_scale = "%Y";
+                    // gantt.config.min_column_width = 50;
+                    //
+                    // gantt.config.scale_height = 90;
+                    // gantt.templates.date_scale = null;
                     gantt.config.min_column_width = 50;
-
-                    gantt.config.scale_height = 90;
+                    gantt.config.scale_height = 50;
                     gantt.templates.date_scale = null;
-
 
                     gantt.config.subscales = [
                         {unit:"month", step:1, date:"%M" }
