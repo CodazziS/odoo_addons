@@ -4,7 +4,6 @@
     <t t-name="GanttView">
         <div>
             <div class="gantt_i_buttons">
-                <field name="gantt_improvement_zoom"/>
                 <select class="gantt_i_input gantt_improvement_scale">
                     <option value="1">Day</option>
                     <option value="2">Week</option>
